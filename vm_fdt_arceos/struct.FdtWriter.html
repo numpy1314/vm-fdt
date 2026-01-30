@@ -5,7 +5,7 @@
 <p><code>mem_reservations</code> - reserved physical memory regions to list in the FDT header.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_boot_cpuid_phys" class="method"><a class="src rightside" href="../src/vm_fdt_arceos/writer.rs.html#313-315">Source</a><h4 class="code-header">pub fn <a href="#method.set_boot_cpuid_phys" class="fn">set_boot_cpuid_phys</a>(&amp;mut self, boot_cpuid_phys: <a class="primitive" href="https://doc.rust-lang.org/1.93.0/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Set the <code>boot_cpuid_phys</code> field of the devicetree header.</p>
 <h5 id="example"><a class="doc-anchor" href="#example">§</a>Example</h5>
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>vm_fdt::{Error, FdtWriter};
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>vm_fdt_arceos::{Error, FdtWriter};
 
 <span class="kw">fn </span>create_fdt() -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, Error&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>fdt = FdtWriter::new()<span class="question-mark">?</span>;

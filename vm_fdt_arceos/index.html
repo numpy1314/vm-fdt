@@ -3,7 +3,7 @@
 <p>In the following example we create an FDT blob with a root node, and 2
 children nodes. More details about this example are available in the readme.</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>vm_fdt::{Error, FdtWriter};
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>vm_fdt_arceos::{Error, FdtWriter};
 
 <span class="kw">fn </span>create_fdt() -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, Error&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>fdt = FdtWriter::new()<span class="question-mark">?</span>;
@@ -31,7 +31,7 @@ children nodes. More details about this example are available in the readme.</p>
 needs to add memory reservations as well, then a different constructor
 can be used as follows:</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>vm_fdt::{Error, FdtReserveEntry, FdtWriter};
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>vm_fdt_arceos::{Error, FdtReserveEntry, FdtWriter};
 
 <span class="kw">fn </span>create_fdt() -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, Error&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>fdt = FdtWriter::new_with_mem_reserv(<span class="kw-2">&amp;</span>[
@@ -49,7 +49,7 @@ can be used as follows:</p>
 property should be set using <a href="struct.FdtWriter.html#method.property_phandle" title="method vm_fdt_arceos::FdtWriter::property_phandle"><code>FdtWriter::property_phandle</code></a>,
 so that the value is checked for uniqueness within the devicetree.</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>vm_fdt::{Error, FdtWriter};
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>vm_fdt_arceos::{Error, FdtWriter};
 
 <span class="kw">fn </span>create_fdt() -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, Error&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>fdt = FdtWriter::new()<span class="question-mark">?</span>;
