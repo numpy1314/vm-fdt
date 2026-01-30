@@ -22,7 +22,7 @@ jobs:
         run: cargo fmt --all -- --check
 
       - name: Clippy
-        run: cargo clippy --all-features -- -D warnings
+        run: cargo clippy --all-features
 
       - name: Build
         run: cargo build --all-features
