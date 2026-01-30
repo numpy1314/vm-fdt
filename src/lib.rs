@@ -12,7 +12,7 @@
 //! children nodes. More details about this example are available in the readme.
 //!
 //! ```rust
-//! use vm_fdt::{Error, FdtWriter};
+//! use vm_fdt_arceos::{Error, FdtWriter};
 //!
 //! fn create_fdt() -> Result<Vec<u8>, Error> {
 //!     let mut fdt = FdtWriter::new()?;
@@ -44,7 +44,7 @@
 //! can be used as follows:
 //!
 //! ```rust
-//! use vm_fdt::{Error, FdtReserveEntry, FdtWriter};
+//! use vm_fdt_arceos::{Error, FdtReserveEntry, FdtWriter};
 //!
 //! fn create_fdt() -> Result<Vec<u8>, Error> {
 //!     let mut fdt = FdtWriter::new_with_mem_reserv(&[
@@ -66,7 +66,7 @@
 //! so that the value is checked for uniqueness within the devicetree.
 //!
 //! ```rust
-//! use vm_fdt::{Error, FdtWriter};
+//! use vm_fdt_arceos::{Error, FdtWriter};
 //!
 //! fn create_fdt() -> Result<Vec<u8>, Error> {
 //!     let mut fdt = FdtWriter::new()?;

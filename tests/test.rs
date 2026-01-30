@@ -1,5 +1,5 @@
 use std::convert::TryInto;
-use vm_fdt::{Error, FdtReserveEntry, FdtWriter};
+use vm_fdt_arceos::{Error, FdtReserveEntry, FdtWriter};
 
 const FDT_MAGIC: u32 = 0xd00dfeed;
 

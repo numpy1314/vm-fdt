@@ -299,7 +299,7 @@ impl FdtWriter {
     /// # Example
     ///
     /// ```rust
-    /// use vm_fdt::{Error, FdtWriter};
+    /// use vm_fdt_arceos::{Error, FdtWriter};
     ///
     /// fn create_fdt() -> Result<Vec<u8>, Error> {
     ///     let mut fdt = FdtWriter::new()?;
