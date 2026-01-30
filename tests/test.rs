@@ -21,7 +21,7 @@ fn test_simple_fdt_creation() -> Result<(), Error> {
 
     let blob = fdt.finish()?;
     verify_header(&blob);
-    
+
     Ok(())
 }
 
@@ -36,7 +36,7 @@ fn test_all_property_types() -> Result<(), Error> {
     fdt.property_u64("u64-prop", 0x1234567890ABCDEF)?;
     fdt.property_array_u32("u32-arr", &[1, 2, 3, 4])?;
     fdt.property_array_u64("u64-arr", &[100, 200])?;
-    
+
     fdt.property("raw-bytes", &[0xDE, 0xAD, 0xBE, 0xEF])?;
 
     fdt.property_string_list("str-list", vec!["one".to_string(), "two".to_string()])?;
@@ -53,19 +53,19 @@ fn test_nested_nodes() -> Result<(), Error> {
     let mut fdt = FdtWriter::new()?;
 
     let root = fdt.begin_node("")?;
-    
-        let child1 = fdt.begin_node("cpu@0")?;
-        fdt.property_string("device_type", "cpu")?;
-        fdt.end_node(child1)?;
 
-        let child2 = fdt.begin_node("memory@80000000")?;
-        fdt.property_string("device_type", "memory")?;
-            
-            let grandchild = fdt.begin_node("bank0")?;
-            fdt.property_u32("reg", 0)?;
-            fdt.end_node(grandchild)?;
+    let child1 = fdt.begin_node("cpu@0")?;
+    fdt.property_string("device_type", "cpu")?;
+    fdt.end_node(child1)?;
 
-        fdt.end_node(child2)?;
+    let child2 = fdt.begin_node("memory@80000000")?;
+    fdt.property_string("device_type", "memory")?;
+
+    let grandchild = fdt.begin_node("bank0")?;
+    fdt.property_u32("reg", 0)?;
+    fdt.end_node(grandchild)?;
+
+    fdt.end_node(child2)?;
 
     fdt.end_node(root)?;
 
@@ -87,7 +87,7 @@ fn test_memory_reservations() -> Result<(), Error> {
 
     let blob = fdt.finish()?;
     verify_header(&blob);
-    
+
     assert!(blob.len() >= 40 + 16 * 3);
 
     Ok(())
@@ -106,7 +106,7 @@ fn test_phandle_uniqueness() -> Result<(), Error> {
     let result = fdt.property_phandle(1);
 
     assert_eq!(result, Err(Error::DuplicatePhandle));
-    
+
     fdt.property_phandle(2)?;
     fdt.end_node(n2)?;
 
@@ -121,13 +121,16 @@ fn test_node_name_validation() -> Result<(), Error> {
     let n1 = fdt.begin_node("valid-node@1")?;
     fdt.end_node(n1)?;
 
-    let invalid_name = "invalid/name"; 
+    let invalid_name = "invalid/name";
     let result = fdt.begin_node(invalid_name);
-    
+
     if let Err(e) = result {
         assert_eq!(e, Error::InvalidNodeName);
     } else {
-        println!("Warning: Library accepted potentially invalid node name '{}'", invalid_name);
+        println!(
+            "Warning: Library accepted potentially invalid node name '{}'",
+            invalid_name
+        );
     }
 
     Ok(())
@@ -136,14 +139,14 @@ fn test_node_name_validation() -> Result<(), Error> {
 #[test]
 fn test_state_machine_violations() -> Result<(), Error> {
     let mut fdt = FdtWriter::new()?;
-    
+
     assert_eq!(
         fdt.property_u32("test", 1),
         Err(Error::PropertyBeforeBeginNode)
     );
 
     let root = fdt.begin_node("root")?;
-    
+
     fdt.end_node(root)?;
 
     assert_eq!(
@@ -153,10 +156,7 @@ fn test_state_machine_violations() -> Result<(), Error> {
 
     let mut fdt2 = FdtWriter::new()?;
     let _open_node = fdt2.begin_node("unclosed")?;
-    assert_eq!(
-        fdt2.finish().map(|_| ()),
-        Err(Error::UnclosedNode)
-    );
+    assert_eq!(fdt2.finish().map(|_| ()), Err(Error::UnclosedNode));
 
     Ok(())
 }
@@ -171,7 +171,7 @@ fn test_large_property_handling() -> Result<(), Error> {
 
     fdt.end_node(root)?;
     let blob = fdt.finish()?;
-    
+
     assert!(blob.len() > 1024);
     verify_header(&blob);
     Ok(())
