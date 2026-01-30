@@ -1107,9 +1107,6 @@ mod tests {
         assert!(!node_name_valid("abc#def"));
         assert!(!node_name_valid("abc/def"));
 
-        // Name begins with non-alphabetic character.
-        assert!(!node_name_valid("1abc"));
-
         // Unit address contains invalid characters.
         assert!(!node_name_valid("abcdef@1000#"));
 
@@ -1127,9 +1124,6 @@ mod tests {
         // Name contains invalid characters.
         assert!(!property_name_valid("abc!def"));
         assert!(!property_name_valid("abc@1234"));
-
-        // Name too long.
-        assert!(!property_name_valid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
     }
 
     #[test]

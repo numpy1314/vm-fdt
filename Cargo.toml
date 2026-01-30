@@ -1,12 +1,15 @@
 [package]
-name = "vm-fdt"
-version = "0.3.0"
+name = "vm-fdt-arceos"
+version = "0.3.0-pre.1"
 description = "Crate for writing Flattened Devicetree blobs"
-authors = ["The Chromium OS Authors"]
-license = "Apache-2.0 OR BSD-3-Clause"
-edition = "2018"
-repository = "https://github.com/rust-vmm/vm-fdt"
+homepage = "https://github.com/bullhh/vm-fdt"
+repository = "https://github.com/bullhh/vm-fdt"
 keywords = ["fdt"]
+license = "Apache-2.0 OR BSD-3-Clause"
+authors = ["The Chromium OS Authors"]
+documentation = "https://docs.rs/vm-fdt-arceos"
+edition = "2018"
+readme = "README.md"
 
 [dependencies]
 hashbrown = { version = "0.14", optional = true }
